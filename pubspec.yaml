@@ -1,0 +1,55 @@
+name: vendor
+description: vendor app for heryerpark
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.6 <3.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  firebase_auth: ^4.2.10
+  firebase_core: ^2.7.1
+  cloud_firestore: ^4.4.4
+  firebase_storage: ^11.0.15
+  firebase_messaging: ^14.2.6
+  provider: ^6.0.5
+  get_it: ^7.2.0
+  http: ^0.13.5
+  intl: ^0.17.0
+
+  package_info_plus: ^3.0.3
+  shared_preferences: ^2.0.18
+  cached_network_image: ^3.2.3
+  flutter_tawk: ^0.1.0
+  webview_flutter: ^3.0.1
+  flutter_widget_from_html: ^0.9.1
+  image_picker: ^0.8.6+4
+  qr_code_scanner: ^1.0.1
+
+  google_fonts: ^4.0.3
+  flex_color_scheme: ^6.1.2
+  flutter_feather_icons: ^2.0.0+1
+  material_design_icons_flutter: ^6.0.7096
+  cupertino_icons: ^1.0.5
+  line_icons: ^2.0.1
+
+  google_nav_bar: ^5.0.6
+  carousel_slider: ^4.2.1
+  pin_code_fields: ^7.4.0
+  flutter_countdown_timer: ^4.1.0
+
+  get: ^4.6.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+flutter:
+  generate: true
+  uses-material-design: true
+  assets:
+    - assets/images/

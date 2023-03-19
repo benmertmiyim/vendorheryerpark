@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "1071336021440",
+    "project_id": "heryerpark-ms",
+    "storage_bucket": "heryerpark-ms.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071336021440:android:83cbb0e38fa73df7937c25",
+        "android_client_info": {
+          "package_name": "app.heryerpark.customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071336021440-e21ugb22n6sn5fo6e6ld7jekinl8ibef.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASMMtrlA4KAJb_94BQ0pc8RQK6glmyr9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1071336021440-e21ugb22n6sn5fo6e6ld7jekinl8ibef.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1071336021440-di83vskk3akbu102poiugvcvupa4bu56.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.heryerpark.heryerpark"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071336021440:android:4d8344933a991a5f937c25",
+        "android_client_info": {
+          "package_name": "app.heryerpark.vendor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071336021440-e21ugb22n6sn5fo6e6ld7jekinl8ibef.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASMMtrlA4KAJb_94BQ0pc8RQK6glmyr9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1071336021440-e21ugb22n6sn5fo6e6ld7jekinl8ibef.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1071336021440-di83vskk3akbu102poiugvcvupa4bu56.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.heryerpark.heryerpark"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

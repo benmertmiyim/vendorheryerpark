@@ -1,0 +1,10 @@
+{
+  "change_theme" : "Chance theme mode",
+  "language" : "Language",
+  "settings": "Settings",
+  "show_notifications": "Show notifications",
+  "privacy_and_security": "Privacy & Security",
+  "help_support" : "Help & Support",
+  "about": "About",
+  "other": "Other"
+}
