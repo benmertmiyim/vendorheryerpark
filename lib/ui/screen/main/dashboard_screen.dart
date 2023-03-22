@@ -33,6 +33,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
                 authView.authProcess == AuthProcess.idle
                     ? Switch(
+                         key: Key('switch'),
                         value: authView.selectedVendor!.active,
                         onChanged: (bool value) {
                           authView.employee!.vendors!.where((element) => element.vendorId == authView.selectedVendor!.vendorId).first.active = value;
@@ -56,24 +57,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
               page: ParkDetailScreen( query: '',),
             ),
             InfoWidget(
+              key: Key("active"),
               color: Colors.green,
               number: authView.activePark.length.toStringAsFixed(0),
               description: "Active Parks",
               page: ParkDetailScreen( query: 'process',),
             ),
             InfoWidget(
+              key: Key("awaiting"),
               color: Colors.orange,
               number: authView.approvalPark.length.toStringAsFixed(0),
               description: "Awaiting Approval",
               page: ParkDetailScreen( query: 'approval',),
             ),
             InfoWidget(
+              key: Key("Rejected"),
               color: Colors.red,
               number: authView.todayDeniedPark.length.toStringAsFixed(0),
               description: "Today Rejected Parks",
               page: ParkDetailScreen( query: 'denied',),
             ),
             InfoWidget(
+              key: Key("Earnings"),
               color: Colors.yellow,
               number: "${authView.todayEarnings.toStringAsFixed(0)} ₺",
               description: "Today's Earnings",

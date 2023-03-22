@@ -43,6 +43,7 @@ class _VendorSelectScreenState extends State<VendorSelectScreen> {
           centerTitle: true,
           actions: [
             IconButton(
+              key: Key('bell'),
               icon: const Icon(LineIcons.bell),
               onPressed: () {
                 Navigator.push(
@@ -61,6 +62,7 @@ class _VendorSelectScreenState extends State<VendorSelectScreen> {
               itemCount: authView.employee!.vendors!.length,
               itemBuilder: (c, i) {
                 return ListTile(
+
                   title: Text(
                       authView.employee!.vendors![i].parkName),
                   subtitle: Column(

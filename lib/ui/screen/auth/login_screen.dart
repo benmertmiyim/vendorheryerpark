@@ -59,6 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Column(
                     children: [
                       TextFormField(
+                        key: Key("email"),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter email';
@@ -103,6 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 16,
                       ),
                       TextFormField(
+                        key: Key("password"),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter password';
@@ -166,6 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             return SizedBox(
                               width: double.infinity,
                               child: ElevatedButton(
+                                key: Key("enter"),
                                 onPressed: () async {
                                   if (formKey.currentState!.validate()) {
                                     await value

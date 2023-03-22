@@ -19,6 +19,7 @@ class InfoWidget extends StatelessWidget {
     return Card(
       color: color,
       child: InkWell(
+
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(builder: (c) => page));
         },

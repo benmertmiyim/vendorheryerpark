@@ -72,8 +72,9 @@ class _OtherScreenState extends State<OtherScreen> {
                   children: [
                     Expanded(
                       child: TileWidget(
+                        key: Key('time'),
                         subTitle: openHour,
-                        title: "Open Time",
+                        title: "OpenTime",
                         onClick: authView.selectedVendor!.permission == PermissionEnum.owner ? () {
                           showDialog(
                             context: context,
@@ -87,6 +88,7 @@ class _OtherScreenState extends State<OtherScreen> {
                                     Form(
                                       key: openKey,
                                       child: TextFormField(
+                                        key: Key("hourly"),
                                           validator: (value) {
                                             if (value == null ||
                                                 value.isEmpty ||
@@ -131,6 +133,7 @@ class _OtherScreenState extends State<OtherScreen> {
                                     SizedBox(
                                       width: double.maxFinite,
                                       child: ElevatedButton(
+                                        key: Key("Okey"),
                                         onPressed: () async {
                                           if (openKey.currentState!
                                               .validate()) {
@@ -181,6 +184,7 @@ class _OtherScreenState extends State<OtherScreen> {
                                             Form(
                                               key: closeKey,
                                               child: TextFormField(
+                                                  key: Key("hourly2"),
                                                   validator: (value) {
                                                     if (value == null ||
                                                         value.isEmpty ||
@@ -323,6 +327,7 @@ class _OtherScreenState extends State<OtherScreen> {
                     : Container(),
                 authView.selectedVendor!.permission == PermissionEnum.owner
                     ? TileWidget(
+
                         title: "Image List",
                         onClick: () {
                           /*Navigator.push(
@@ -348,6 +353,7 @@ class _OtherScreenState extends State<OtherScreen> {
                       )
                     : Container(),
                 TileWidget(
+                  key: Key("comments"),
                   title: "Comments",
                   onClick: () {
                     Navigator.push(

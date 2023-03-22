@@ -65,6 +65,7 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
       floatingActionButton: authView.employee!.vendors!.length == 1 ? Container():  FloatingActionButton(
+        key: Key("button"),
         onPressed: () {
           authView.selectedVendor = null;
           authView.clear();
@@ -98,14 +99,17 @@ class _MainScreenState extends State<MainScreen> {
               duration: const Duration(milliseconds: 300),
               tabs: [
                 GButton(
+                  key: Key("Home"),
                   icon: MdiIcons.viewDashboardOutline,
                   text: 'Home',
                 ),
                 GButton(
+                  key: Key("Scanner"),
                   icon: MdiIcons.cameraOutline,
                   text: 'Scanner',
                 ),
                 GButton(
+                  key: Key("Settings"),
                   icon: MdiIcons.storeSettingsOutline,
                   text: 'Settings',
                 ),
