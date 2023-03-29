@@ -27,7 +27,7 @@ class AuthService implements AuthBase {
 
       if (documentSnapshot.exists) {
         Map<String, dynamic> map =
-            documentSnapshot.data() as Map<String, dynamic>;
+        documentSnapshot.data() as Map<String, dynamic>;
         return VendorModel.fromJson(map);
       } else {
         return "Vendor does not exist";
@@ -208,15 +208,32 @@ class AuthService implements AuthBase {
 
   Future<List<ParkHistory>> getParkHistory(String vendorId, String query) async {
     try {
+      DateTime date = DateTime.now();
+      DateTime time = DateTime(date.year, date.month, date.day, 0);
       QuerySnapshot querySnapshot;
-      if(query == ""){
+      if(query == "denied"){
         querySnapshot = await firebaseFirestore
-            .collection("vendor/$vendorId/history")
+            .collection("vendor/$vendorId/history").where("requestTime", isGreaterThan: time).where("status", isEqualTo: "denied")
+            .orderBy("requestTime", descending: true)
+            .get();
+      }else if(query == "process"){
+        querySnapshot = await firebaseFirestore
+            .collection("vendor/$vendorId/history").where("status", isEqualTo: "process")
+            .orderBy("requestTime", descending: true)
+            .get();
+      }else if(query == "approval"){
+        querySnapshot = await firebaseFirestore
+            .collection("vendor/$vendorId/history").where("status", isEqualTo: "approval")
+            .orderBy("requestTime", descending: true)
+            .get();
+      }else if(query == "earn"){
+        querySnapshot = await firebaseFirestore
+            .collection("vendor/$vendorId/history").where("status", isEqualTo: "completed").where("requestTime", isGreaterThan: time)
             .orderBy("requestTime", descending: true)
             .get();
       }else{
         querySnapshot = await firebaseFirestore
-            .collection("vendor/$vendorId/history").where("status", isEqualTo: query)
+            .collection("vendor/$vendorId/history").where("requestTime", isGreaterThan: time)
             .orderBy("requestTime", descending: true)
             .get();
       }

@@ -4,11 +4,11 @@ import 'package:provider/provider.dart';
 import 'package:vendor/core/model/enum.dart';
 import 'package:vendor/core/service/auth_service.dart';
 import 'package:vendor/core/view/auth_view.dart';
-import 'package:vendor/core/view/notification_view.dart';
 import 'package:vendor/extensions/phone_extension.dart';
 import 'package:vendor/main.dart';
 import 'package:vendor/ui/components/tile_widget.dart';
 import 'package:vendor/ui/screen/main/comments_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class OtherScreen extends StatefulWidget {
   const OtherScreen({Key? key}) : super(key: key);
@@ -37,44 +37,43 @@ class _OtherScreenState extends State<OtherScreen> {
               children: [
                 TileWidget(
                   subTitle: authView.selectedVendor!.parkName,
-                  title: "Park Name",
+                  title: AppLocalizations.of(context).other_screen_park_name,
                 ),
                 TileWidget(
                   subTitle: authView.selectedVendor!.address,
-                  title: "Park Address",
+                  title: AppLocalizations.of(context).other_screen_park_address,
                 ),
                 TileWidget(
                   subTitle: authView.employee!.employeeNameSurname,
-                  title: "Employee Name",
+                  title: AppLocalizations.of(context).other_screen_employee_name,
                 ),
                 TileWidget(
                   subTitle: authView.employee!.employeeEmail,
-                  title: "Employee Email",
+                  title: AppLocalizations.of(context).other_screen_employee_email,
                 ),
                 TileWidget(
                   subTitle:
-                      permissionToString(authView.selectedVendor!.permission!),
-                  title: "Employee Permission",
+                  permissionToString(authView.selectedVendor!.permission!),
+                  title: AppLocalizations.of(context).other_screen_employee_permission,
                 ),
                 TileWidget(
                   subTitle: authView.employee!.employeePhoneNumber,
-                  title: "Employee Phone",
+                  title: AppLocalizations.of(context).other_screen_employee_phone,
                 ),
                 TileWidget(
                   subTitle: authView.selectedVendor!.vendorId,
-                  title: "Vendor ID",
+                  title: AppLocalizations.of(context).other_screen_vendor_id,
                 ),
                 TileWidget(
                   subTitle: authView.selectedVendor!.rating.toStringAsFixed(2),
-                  title: "Total Rating",
+                  title: AppLocalizations.of(context).other_screen_total_rating,
                 ),
                 Row(
                   children: [
                     Expanded(
                       child: TileWidget(
-                        key: Key('time'),
                         subTitle: openHour,
-                        title: "OpenTime",
+                        title: AppLocalizations.of(context).other_screen_open_time,
                         onClick: authView.selectedVendor!.permission == PermissionEnum.owner ? () {
                           showDialog(
                             context: context,
@@ -88,12 +87,11 @@ class _OtherScreenState extends State<OtherScreen> {
                                     Form(
                                       key: openKey,
                                       child: TextFormField(
-                                        key: Key("hourly"),
                                           validator: (value) {
                                             if (value == null ||
                                                 value.isEmpty ||
                                                 value.length < 5) {
-                                              return 'Please enter hour';
+                                              return AppLocalizations.of(context).other_screen_please_enter_hour;
                                             } else {
                                               openHour = value;
                                             }
@@ -103,9 +101,9 @@ class _OtherScreenState extends State<OtherScreen> {
                                               mask: '--:--'),
                                           keyboardType: TextInputType.number,
                                           textInputAction: TextInputAction.done,
-                                          decoration: const InputDecoration(
+                                          decoration: InputDecoration(
                                             hintText: "00:00",
-                                            label: Text("Hour"),
+                                            label: Text(AppLocalizations.of(context).other_screen_hour),
                                             border: OutlineInputBorder(
                                                 borderRadius: BorderRadius.all(
                                                   Radius.circular(8.0),
@@ -133,15 +131,14 @@ class _OtherScreenState extends State<OtherScreen> {
                                     SizedBox(
                                       width: double.maxFinite,
                                       child: ElevatedButton(
-                                        key: Key("Okey"),
                                         onPressed: () async {
                                           if (openKey.currentState!
                                               .validate()) {
                                             AuthService()
                                                 .setOpenHour(
-                                                    openHour,
-                                                    authView.selectedVendor!
-                                                        .vendorId)
+                                                openHour,
+                                                authView.selectedVendor!
+                                                    .vendorId)
                                                 .then((res) {
                                               authView.selectedVendor!
                                                   .openTime = openHour;
@@ -151,8 +148,8 @@ class _OtherScreenState extends State<OtherScreen> {
                                             });
                                           }
                                         },
-                                        child: const Text(
-                                          "Okey",
+                                        child: Text(
+                                          AppLocalizations.of(context).other_screen_okay,
                                         ),
                                       ),
                                     )
@@ -167,118 +164,117 @@ class _OtherScreenState extends State<OtherScreen> {
                     Expanded(
                       child: TileWidget(
                           subTitle: closeHour,
-                          title: "Close Time",
+                          title: AppLocalizations.of(context).other_screen_close_time,
                           onClick: authView.selectedVendor!.permission ==
-                                  PermissionEnum.owner
+                              PermissionEnum.owner
                               ? () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) => Dialog(
-                                      child: Container(
-                                        padding: const EdgeInsets.all(16),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Form(
-                                              key: closeKey,
-                                              child: TextFormField(
-                                                  key: Key("hourly2"),
-                                                  validator: (value) {
-                                                    if (value == null ||
-                                                        value.isEmpty ||
-                                                        value.length < 5) {
-                                                      return 'Please enter hour';
-                                                    } else {
-                                                      closeHour = value;
-                                                    }
-                                                    return null;
-                                                  },
-                                                  controller:
-                                                      MaskedTextController(
-                                                          mask: '--:--'),
-                                                  keyboardType:
-                                                      TextInputType.number,
-                                                  textInputAction:
-                                                      TextInputAction.done,
-                                                  decoration:
-                                                      const InputDecoration(
-                                                    hintText: "00:00",
-                                                    label: Text("Hour"),
-                                                    border: OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                          Radius.circular(8.0),
-                                                        ),
-                                                        borderSide:
-                                                            BorderSide.none),
-                                                    enabledBorder:
-                                                        OutlineInputBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(
-                                                              Radius.circular(
-                                                                  8.0),
-                                                            ),
-                                                            borderSide:
-                                                                BorderSide
-                                                                    .none),
-                                                    focusedBorder:
-                                                        OutlineInputBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(
-                                                              Radius.circular(
-                                                                  8.0),
-                                                            ),
-                                                            borderSide:
-                                                                BorderSide
-                                                                    .none),
-                                                    filled: true,
-                                                    prefixIcon: Icon(
-                                                      MdiIcons.hours24,
-                                                      size: 22,
-                                                    ),
-                                                    isDense: true,
-                                                    contentPadding:
-                                                        EdgeInsets.all(0),
-                                                  )),
-                                            ),
-                                            SizedBox(
-                                              width: double.maxFinite,
-                                              child: ElevatedButton(
-                                                onPressed: () async {
-                                                  if (closeKey.currentState!
-                                                      .validate()) {
-                                                    AuthService()
-                                                        .setCloseHour(
-                                                            closeHour,
-                                                            authView
-                                                                .selectedVendor!
-                                                                .vendorId)
-                                                        .then((res) {
-                                                      authView.selectedVendor!
-                                                              .closeTime =
-                                                          closeHour;
-                                                      authView.authProcess =
-                                                          AuthProcess.idle;
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    });
-                                                  }
-                                                },
-                                                child: const Text(
-                                                  "Okey",
-                                                ),
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) => Dialog(
+                                child: Container(
+                                  padding: const EdgeInsets.all(16),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Form(
+                                        key: closeKey,
+                                        child: TextFormField(
+                                            validator: (value) {
+                                              if (value == null ||
+                                                  value.isEmpty ||
+                                                  value.length < 5) {
+                                                return AppLocalizations.of(context).other_screen_please_enter_hour;
+                                              } else {
+                                                closeHour = value;
+                                              }
+                                              return null;
+                                            },
+                                            controller:
+                                            MaskedTextController(
+                                                mask: '--:--'),
+                                            keyboardType:
+                                            TextInputType.number,
+                                            textInputAction:
+                                            TextInputAction.done,
+                                            decoration:
+                                            InputDecoration(
+                                              hintText: "00:00",
+                                              label: Text(AppLocalizations.of(context).other_screen_hour),
+                                              border: OutlineInputBorder(
+                                                  borderRadius:
+                                                  BorderRadius.all(
+                                                    Radius.circular(8.0),
+                                                  ),
+                                                  borderSide:
+                                                  BorderSide.none),
+                                              enabledBorder:
+                                              OutlineInputBorder(
+                                                  borderRadius:
+                                                  BorderRadius
+                                                      .all(
+                                                    Radius.circular(
+                                                        8.0),
+                                                  ),
+                                                  borderSide:
+                                                  BorderSide
+                                                      .none),
+                                              focusedBorder:
+                                              OutlineInputBorder(
+                                                  borderRadius:
+                                                  BorderRadius
+                                                      .all(
+                                                    Radius.circular(
+                                                        8.0),
+                                                  ),
+                                                  borderSide:
+                                                  BorderSide
+                                                      .none),
+                                              filled: true,
+                                              prefixIcon: Icon(
+                                                MdiIcons.hours24,
+                                                size: 22,
                                               ),
-                                            )
-                                          ],
-                                        ),
+                                              isDense: true,
+                                              contentPadding:
+                                              EdgeInsets.all(0),
+                                            )),
                                       ),
-                                    ),
-                                  );
-                                }
+                                      SizedBox(
+                                        width: double.maxFinite,
+                                        child: ElevatedButton(
+                                          onPressed: () async {
+                                            if (closeKey.currentState!
+                                                .validate()) {
+                                              AuthService()
+                                                  .setCloseHour(
+                                                  closeHour,
+                                                  authView
+                                                      .selectedVendor!
+                                                      .vendorId)
+                                                  .then((res) {
+                                                authView.selectedVendor!
+                                                    .closeTime =
+                                                    closeHour;
+                                                authView.authProcess =
+                                                    AuthProcess.idle;
+                                                Navigator.of(context)
+                                                    .pop();
+                                              });
+                                            }
+                                          },
+                                          child: Text(
+                                            AppLocalizations.of(context).other_screen_okay,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
                               : () {}),
                     ),
                   ],
@@ -289,45 +285,44 @@ class _OtherScreenState extends State<OtherScreen> {
                       child: TileWidget(
                         subTitle: authView.selectedVendor!.security
                             .toStringAsFixed(2),
-                        title: "Security",
+                        title: AppLocalizations.of(context).other_screen_security,
                       ),
                     ),
                     Expanded(
                       child: TileWidget(
                         subTitle: authView.selectedVendor!.accessibility
                             .toStringAsFixed(2),
-                        title: "Accessibility",
+                        title: AppLocalizations.of(context).other_screen_accessibility,
                       ),
                     ),
                     Expanded(
                       child: TileWidget(
                         subTitle: authView.selectedVendor!.serviceQuality
                             .toStringAsFixed(2),
-                        title: "Service",
+                        title: AppLocalizations.of(context).other_screen_service,
                       ),
                     ),
                   ],
                 ),
                 TileWidget(
                   subTitle:
-                      "${authView.selectedVendor!.latitude} - ${authView.selectedVendor!.longitude}",
-                  title: "Location",
+                  "${authView.selectedVendor!.latitude} - ${authView.selectedVendor!.longitude}",
+                  title: AppLocalizations.of(context).other_screen_location,
                 ),
                 authView.selectedVendor!.permission == PermissionEnum.owner
                     ? TileWidget(
-                        subTitle: authView.selectedVendor!.iban,
-                        title: "IBAN",
-                      )
+                  subTitle: authView.selectedVendor!.iban,
+                  title: "IBAN",
+                )
                     : Container(),
                 authView.selectedVendor!.permission == PermissionEnum.owner
                     ? TileWidget(
-                        subTitle: authView.selectedVendor!.vkn,
-                        title: "VKN",
-                      )
+                  subTitle: authView.selectedVendor!.vkn,
+                  title: "VKN",
+                )
                     : Container(),
-                authView.selectedVendor!.permission == PermissionEnum.owner
+                /*authView.selectedVendor!.permission == PermissionEnum.owner
                     ? TileWidget(
-
                         title: "Image List",
                         onClick: () {
                           /*Navigator.push(
@@ -338,23 +333,22 @@ class _OtherScreenState extends State<OtherScreen> {
                     );*/
                         },
                       )
-                    : Container(),
+                    : Container(),*/
                 authView.selectedVendor!.permission == PermissionEnum.owner
                     ? TileWidget(
-                        title: "Price List",
-                        onClick: () {
-                          /*Navigator.push(
+                  title: AppLocalizations.of(context).other_screen_price_list,
+                  onClick: () {
+                    /*Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const WalletHistoryScreen(),
+                        builder: (context) => const PriceScreen(),
                       ),
                     );*/
-                        },
-                      )
+                  },
+                )
                     : Container(),
                 TileWidget(
-                  key: Key("comments"),
-                  title: "Comments",
+                  title: AppLocalizations.of(context).other_screen_comments,
                   onClick: () {
                     Navigator.push(
                       context,
@@ -364,7 +358,7 @@ class _OtherScreenState extends State<OtherScreen> {
                     );
                   },
                 ),
-                authView.selectedVendor!.permission == PermissionEnum.owner
+                /*authView.selectedVendor!.permission == PermissionEnum.owner
                     ? TileWidget(
                         title: "Wallet History",
                         onClick: () {
@@ -376,26 +370,26 @@ class _OtherScreenState extends State<OtherScreen> {
                     );*/
                         },
                       )
-                    : Container(),
+                    : Container(),*/
                 authView.selectedVendor!.permission == PermissionEnum.owner
                     ? TileWidget(
-                        title: "Employee List",
-                        onClick: () {
-                          /*Navigator.push(
+                  title: AppLocalizations.of(context).other_screen_employee_list,
+                  onClick: () {
+                    /*Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => const WalletHistoryScreen(),
                       ),
                     );*/
-                        },
-                      )
+                  },
+                )
                     : Container(),
-                const TileWidget(
-                  title: "Support",
+                TileWidget(
+                  title: AppLocalizations.of(context).other_screen_support,
                   subTitle: "+850 123 12 12",
                 ),
                 TileWidget(
-                  title: "Logout",
+                  title: AppLocalizations.of(context).other_screen_logout,
                   onClick: () async {
                     Navigator.pop(context);
                     await authView.signOut().then((value) {
@@ -404,7 +398,7 @@ class _OtherScreenState extends State<OtherScreen> {
                         MaterialPageRoute(
                           builder: (_) => const MyApp(),
                         ),
-                        (_) => true,
+                            (_) => true,
                       );
                     });
                   },
@@ -415,7 +409,7 @@ class _OtherScreenState extends State<OtherScreen> {
           ],
         );
       } else {
-        return const Text("No Data");
+        return Text(AppLocalizations.of(context).other_screen_no_data);
       }
     } else {
       return const Center(

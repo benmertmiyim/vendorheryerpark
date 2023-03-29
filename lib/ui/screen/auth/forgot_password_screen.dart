@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:vendor/core/view/auth_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
@@ -68,10 +69,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter email';
+                            return AppLocalizations.of(context).login_screen_enter_mail;
                           } else {
                             if (!value.contains("@") || !value.contains(".")) {
-                              return "Please enter an email";
+                              return AppLocalizations.of(context).login_screen_enter_mail;
                             } else {
                               email = value;
                             }
@@ -81,7 +82,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         keyboardType: TextInputType.emailAddress,
                         textInputAction: TextInputAction.done,
                         decoration: InputDecoration(
-                          hintText: "Email address",
+                          hintText: AppLocalizations.of(context).login_screen_email,
                           border: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8.0),
@@ -135,7 +136,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                             .showSnackBar(
                                           SnackBar(
                                             content: Text(
-                                              "We sent an email to reset your password.",
+                                              AppLocalizations.of(context).forget_screen_send,
                                             ),
                                             backgroundColor: Colors.green,
                                             behavior: SnackBarBehavior.floating,
@@ -147,7 +148,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                                   }
                                 },
                                 child: Text(
-                                  "Reset Password",
+                                  AppLocalizations.of(context).forget_screen_reset_password,
                                 ),
                               ),
                             );

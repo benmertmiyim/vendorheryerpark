@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:vendor/core/model/enum.dart';
 import 'package:vendor/core/view/auth_view.dart';
 import 'package:vendor/ui/screen/main/notification_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class VendorSelectScreen extends StatefulWidget {
   const VendorSelectScreen({Key? key}) : super(key: key);
@@ -70,9 +71,9 @@ class _VendorSelectScreenState extends State<VendorSelectScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                          "Permission: ${permissionToString(authView.employee!.vendors![i].permission)}"),
+                          "${AppLocalizations.of(context).vendor_select_screen_permission} ${permissionToString(authView.employee!.vendors![i].permission)}"),
                       Text(
-                          "Adress: ${authView.employee!.vendors![i].address}"),
+                          "${AppLocalizations.of(context).vendor_select_screen_address} ${authView.employee!.vendors![i].address}"),
                     ],
                   ),
                   trailing: authView.employee!.vendors![i].active

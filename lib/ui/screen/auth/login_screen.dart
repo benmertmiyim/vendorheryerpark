@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:vendor/core/view/auth_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'forgot_password_screen.dart';
 
@@ -62,10 +63,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         key: Key("email"),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter email';
+                            return AppLocalizations.of(context).login_screen_enter_mail;
                           } else {
                             if (!value.contains("@") || !value.contains(".")) {
-                              return "Please enter an email";
+                              return AppLocalizations.of(context).login_screen_enter_mail;
                             } else {
                               email = value;
                             }
@@ -75,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         keyboardType: TextInputType.emailAddress,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                          hintText: "Email address",
+                          hintText: AppLocalizations.of(context).login_screen_email,
                           border: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8.0),
@@ -107,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         key: Key("password"),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter password';
+                            return AppLocalizations.of(context).login_screen_enter_password;
                           } else {
                             password = value;
                           }
@@ -119,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         decoration: InputDecoration(
 
-                          hintText: "Password",
+                          hintText: AppLocalizations.of(context).login_screen_password,
                           border: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8.0),
@@ -193,7 +194,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   }
                                 },
                                 child: Text(
-                                  "Login",
+                                  AppLocalizations.of(context).login_screen_login,
                                 ),
                               ),
                             );
@@ -220,7 +221,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             );
                           },
                           child: Text(
-                            "Forgot Password ?",
+                            AppLocalizations.of(context).login_screen_forget_password,
                           ),
                         ),
                       ),

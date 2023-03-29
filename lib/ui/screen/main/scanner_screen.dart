@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:vendor/core/view/auth_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ScannerScreen extends StatefulWidget {
   const ScannerScreen({Key? key}) : super(key: key);
@@ -53,10 +54,10 @@ class _ScannerScreenState extends State<ScannerScreen> {
                       child: Padding(
                         padding: const EdgeInsets.all(32),
                         child: Column(
-                          children: const [
+                          children: [
                             CircularProgressIndicator(),
                             SizedBox(height: 16),
-                            Text("Processing...")
+                            Text(AppLocalizations.of(context).scanner_screen_process)
                           ],
                         ),
                       ),
@@ -127,7 +128,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
                             Navigator.pop(context);
                           },
                           child: Text(
-                            "Okey",
+                            AppLocalizations.of(context).other_screen_okay,
                           ),
                         ),
                       ],

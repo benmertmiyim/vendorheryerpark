@@ -8,6 +8,7 @@ import 'package:vendor/ui/screen/main/dashboard_screen.dart';
 import 'package:vendor/ui/screen/main/notification_screen.dart';
 import 'package:vendor/ui/screen/main/other_screen.dart';
 import 'package:vendor/ui/screen/main/scanner_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -101,17 +102,17 @@ class _MainScreenState extends State<MainScreen> {
                 GButton(
                   key: Key("Home"),
                   icon: MdiIcons.viewDashboardOutline,
-                  text: 'Home',
+                  text: AppLocalizations.of(context).main_screen_home,
                 ),
                 GButton(
                   key: Key("Scanner"),
                   icon: MdiIcons.cameraOutline,
-                  text: 'Scanner',
+                  text: AppLocalizations.of(context).main_screen_scanner,
                 ),
                 GButton(
                   key: Key("Settings"),
                   icon: MdiIcons.storeSettingsOutline,
-                  text: 'Settings',
+                  text: AppLocalizations.of(context).main_screen_settings,
                 ),
               ],
               selectedIndex: _selectedIndex,

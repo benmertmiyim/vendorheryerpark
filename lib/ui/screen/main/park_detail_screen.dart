@@ -5,6 +5,7 @@ import 'package:vendor/core/model/enum.dart';
 import 'package:vendor/core/model/park_history_model.dart';
 import 'package:vendor/core/service/auth_service.dart';
 import 'package:vendor/core/view/auth_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ParkDetailScreen extends StatelessWidget {
   final String query;
@@ -16,10 +17,10 @@ class ParkDetailScreen extends StatelessWidget {
     AuthView authView = Provider.of<AuthView>(context);
 
     return Scaffold(
-        appBar: AppBar(
-          title:const Text("Details"),
-          centerTitle: true,
-        ),
+      appBar: AppBar(
+        title:Text(AppLocalizations.of(context).park_detail_screen_detail),
+        centerTitle: true,
+      ),
       body: FutureBuilder(
           future: AuthService()
               .getParkHistory(authView.selectedVendor!.vendorId, query),
@@ -29,18 +30,19 @@ class ParkDetailScreen extends StatelessWidget {
               if(parks.isNotEmpty){
                 return ListView.builder(
                   itemCount: parks.length,
-                  itemBuilder: (context, i){
+                  shrinkWrap: true,
+                  itemBuilder: (BuildContext context, int i) {
                     return ListTile(
                       title: Text(parks[i].customerName),
                       subtitle: Text(DateFormat('dd MMM yy - kk:mm')
                           .format(parks[i].requestTime),),
-                      trailing: parks[i].status == StatusEnum.completed ? Text("${parks[i].totalPrice!.toStringAsFixed(2)}₺"):Container(),
-                      );
+                      trailing: parks[i].status == StatusEnum.completed ? Text("${parks[i].totalPrice!.toStringAsFixed(2)}₺"):Text(""),
+                    );
                   },
                 );
               }else{
-                return const Center(
-                  child: Text("No Parks"),
+                return Center(
+                  child: Text(AppLocalizations.of(context).notification_screen_no_notifications),
                 );
               }
             }else{

@@ -4,6 +4,7 @@ import 'package:vendor/core/model/comment_model.dart';
 import 'package:vendor/core/service/auth_service.dart';
 import 'package:vendor/core/view/auth_view.dart';
 import 'package:vendor/ui/components/comments_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CommentsScreen extends StatelessWidget {
   const CommentsScreen({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class CommentsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Ratings"),
+        title: Text(AppLocalizations.of(context).comments_screen_ratings),
         centerTitle: true,
       ),
       body: FutureBuilder(
@@ -30,8 +31,8 @@ class CommentsScreen extends StatelessWidget {
                   },
                 );
               }else{
-                return const Center(
-                  child: Text("No Rates"),
+                return Center(
+                  child: Text(AppLocalizations.of(context).comments_screen_no_rates),
                 );
               }
             }else{

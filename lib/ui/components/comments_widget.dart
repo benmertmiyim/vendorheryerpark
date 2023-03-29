@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:vendor/core/model/comment_model.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CommentWidget extends StatelessWidget {
   final RateModel rateModel;
@@ -22,7 +23,7 @@ class CommentWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("Security:"),
+                Text(AppLocalizations.of(context).other_screen_security+":"),
                 Row(
                   children: [
                     Text(rateModel.security.toStringAsFixed(2)),
@@ -38,7 +39,7 @@ class CommentWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("Accessibility:"),
+                Text(AppLocalizations.of(context).other_screen_accessibility+":"),
                 Row(
                   children: [
                     Text(rateModel.accessibility.toStringAsFixed(2)),
@@ -54,7 +55,7 @@ class CommentWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("Service Quality:"),
+                Text(AppLocalizations.of(context).other_screen_service+":"),
                 Row(
                   children: [
                     Text(rateModel.serviceQuality.toStringAsFixed(2)),
@@ -71,7 +72,7 @@ class CommentWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("Rate Date:"),
+                Text(AppLocalizations.of(context).comment_screen_rate_date),
                 Text(DateFormat('dd-MM-yyyy – kk:mm')
                     .format(rateModel.commentDate.toDate())),
               ],
@@ -80,7 +81,7 @@ class CommentWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Comment: "),
+                Text(AppLocalizations.of(context).other_screen_comments+": "),
                 Expanded(child: Text(rateModel.message != "" ? rateModel.message : "-",))
               ],
             ),

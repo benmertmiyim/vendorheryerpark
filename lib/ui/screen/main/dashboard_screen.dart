@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:vendor/core/view/auth_view.dart';
 import 'package:vendor/ui/components/info_widget.dart';
 import 'package:vendor/ui/screen/main/park_detail_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
@@ -27,19 +28,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Text(
-                  "Park Status",
+                Text(
+                  AppLocalizations.of(context).dashboard_screen_park_status,
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
                 authView.authProcess == AuthProcess.idle
                     ? Switch(
-                         key: Key('switch'),
-                        value: authView.selectedVendor!.active,
-                        onChanged: (bool value) {
-                          authView.employee!.vendors!.where((element) => element.vendorId == authView.selectedVendor!.vendorId).first.active = value;
-                          authView.changeStatus(!authView.selectedVendor!.active,authView.selectedVendor!.vendorId);
-                        },
-                      )
+                  value: authView.selectedVendor!.active,
+                  onChanged: (bool value) {
+                    authView.employee!.vendors!.where((element) => element.vendorId == authView.selectedVendor!.vendorId).first.active = value;
+                    authView.changeStatus(!authView.selectedVendor!.active,authView.selectedVendor!.vendorId);
+                  },
+                )
                     : const CircularProgressIndicator(),
               ],
             ),
@@ -53,36 +53,32 @@ class _DashboardScreenState extends State<DashboardScreen> {
             InfoWidget(
               color: Colors.blue,
               number: authView.todayParkCount.toString(),
-              description: "Today Total Parks",
-              page: ParkDetailScreen( query: '',),
+              description: AppLocalizations.of(context).dashboard_screen_today_total_parks,
+              page: ParkDetailScreen( query: 'today',),
             ),
             InfoWidget(
-              key: Key("active"),
               color: Colors.green,
               number: authView.activePark.length.toStringAsFixed(0),
-              description: "Active Parks",
+              description: AppLocalizations.of(context).dashboard_screen_active_parks,
               page: ParkDetailScreen( query: 'process',),
             ),
             InfoWidget(
-              key: Key("awaiting"),
               color: Colors.orange,
               number: authView.approvalPark.length.toStringAsFixed(0),
-              description: "Awaiting Approval",
+              description: AppLocalizations.of(context).dashboard_screen_awaiting_approval,
               page: ParkDetailScreen( query: 'approval',),
             ),
             InfoWidget(
-              key: Key("Rejected"),
               color: Colors.red,
               number: authView.todayDeniedPark.length.toStringAsFixed(0),
-              description: "Today Rejected Parks",
+              description: AppLocalizations.of(context).dashboard_screen_today_rejected_parks,
               page: ParkDetailScreen( query: 'denied',),
             ),
             InfoWidget(
-              key: Key("Earnings"),
               color: Colors.yellow,
               number: "${authView.todayEarnings.toStringAsFixed(0)} ₺",
-              description: "Today's Earnings",
-              page: ParkDetailScreen( query: '',),
+              description: AppLocalizations.of(context).dashboard_screen_today_earnings,
+              page: ParkDetailScreen( query: 'earn',),
             ),
           ],
         ),

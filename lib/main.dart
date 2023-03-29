@@ -13,6 +13,7 @@ import 'package:vendor/l10n/l10n.dart';
 import 'package:vendor/locator.dart';
 import 'package:vendor/provider/local_provider.dart';
 import 'package:vendor/ui/screen/landing_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -60,7 +61,7 @@ class MyApp extends StatelessWidget {
         locale: Get.deviceLocale,
         supportedLocales: L10n.all,
         localizationsDelegates: const [
-          //AppLocalizations.delegate,
+          AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
